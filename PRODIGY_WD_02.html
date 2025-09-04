@@ -1,0 +1,148 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOP WATCH</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            background-color: #414141;
+           
+        }
+      
+#title{
+    font-size: 24px;
+    font-weight: 900;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   color: white;
+   text-shadow: 5px 5px 10px black;
+   text-overflow: clip;
+   position: relative;
+   left: 82vh;
+   top: 30vh;
+}
+#watch{
+  position: relative;
+  left: 80vh;
+    top: 30vh;
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    color: white;
+    font-size: 30px;
+    border-radius: 50%;
+    border: 2px solid orangered;
+    text-align: center;
+    line-height: 200px;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+button{
+    position: relative;
+    left: 75vh;
+    top: 25vh;
+   width: 100px;
+   height: 50px;
+   background-color: black;
+   color: white;
+   border: 2px solid orangered;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+button:hover{
+    cursor: pointer;
+   
+}
+
+        
+#lap{
+    position: relative; 
+    left: 75vh;
+    top: 25vh;
+    color: white;
+    font-family: monospace;
+    font-size: larger;
+
+}
+    </style>
+</head>
+<body>
+
+ 
+
+    <b id="title">STOP WATCH </b>
+    <br>
+    <br>
+    <div id="watch" disabled="disabled">00:00:00</div>
+    <BR></BR>
+    <BR></BR>
+<button id="ONE" type="button">START</button>
+    <button id="TWO" type="button">STOP</button>
+    <button id="THREE" type="button">RESET</button>
+    <br>
+    <br>
+<b id="lap"></b>
+ 
+
+ </div>
+ 
+    
+</body>
+<script>
+
+    let display=document.getElementById('watch');
+    let start =document.getElementById('ONE');
+    let stop=document.getElementById('TWO');
+    let reset =document.getElementById('THREE');
+    let lap=document.getElementById('lap');
+    let timer_id=null;
+    let min=0,sec=0,milisec=0;
+
+    
+   let displayupdate = ()=>{
+    milisec++;
+    if(milisec==100){
+        sec++;
+        milisec=0;
+    }else if(sec==60){
+        min++;
+        sec=0;
+    }
+    let cmin=min<10?"0"+min:min;
+    let csec=sec<10?"0"+sec:sec;
+ let cmilisec=milisec<10?"0"+milisec:milisec;
+    display.innerHTML=`${cmin}:${csec}:${cmilisec}`;
+   } 
+   let reseted=()=>{
+     
+        min=0;
+        sec=0;
+        milisec=0;
+        display.innerHTML=`00:00:00`;
+        clearInterval(timer_id);
+        timer_id=null;  
+        lap.innerHTML=`<b>CURRENT LAP TIME: 00:00:00</b>`;                                                                      
+   }
+   start.addEventListener('click',()=>{
+        if(timer_id!=null){
+            return;
+        }
+       
+        timer_id=setInterval(displayupdate,10);
+    });
+    stop.addEventListener('click',()=>{
+         lap.innerHTML=`<b>CURRENT  LAP TIME: ${display.innerHTML}</b>`;
+        if(timer_id==null){
+            return;
+        }
+        clearInterval(timer_id);
+        timer_id=null;
+    });
+    reset.addEventListener('click',reseted);
+
+    
+</script>
+</html>
