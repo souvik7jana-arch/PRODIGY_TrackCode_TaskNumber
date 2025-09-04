@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nav</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            background-color: rgb(88, 114, 114);
+        }
+        li{
+            list-style: none;
+           color: rgb(231, 107, 62);
+         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+         
+         font-size: 17px;
+        }
+        ul{
+            
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            justify-content: center;
+        }
+        nav{
+           background-color: black;
+            border: 2px solid black;
+            
+        }
+ nav:hover{
+  font-family: 'Times New Roman', Times, serif;
+ }
+        
+    </style>
+ </head>
+ <body>
+
+    <nav id="nav">
+        <ul>
+            <li id="list" >HOME</li>
+            <li id="list" >MAIN MENU</li>
+            <li id="list" >ABOUT US </li>
+        </ul>
+    </nav>
+    
+ </body>
+ <script>
+
+    let nav=document.getElementById('nav')
+    let list=document.querySelectorAll('#list')
+    nav.addEventListener('mouseover', (e)=>{
+        nav.style.background='white'
+        let list=document.querySelector('#list')
+        
+        
+
+    })
+ </script>
+ </html>
